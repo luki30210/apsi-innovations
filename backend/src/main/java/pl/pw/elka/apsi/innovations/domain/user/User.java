@@ -14,7 +14,7 @@ public class User {
     public enum UserType { STUDENT, TEACHER }
 
     @Id
-    @Column(columnDefinition = "VARCHAR(255)")
+    @Column(columnDefinition = "VARCHAR(100)")
     String username;
 
     @NotNull
