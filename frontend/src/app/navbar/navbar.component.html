@@ -1,0 +1,14 @@
+<mat-toolbar class="navbar" color="primary">
+  <button mat-button color="default" routerLink="/" routerLinkActive="active">Lista innowacji</button>
+  <button mat-button color="default" *ngIf="loggedUserName">Tylko dla zalogowanych</button>
+
+  <div class="fill-remaining-space"></div>
+
+  <span class="loggedUserName"> {{ loggedUserName }} </span>
+  <button class="icon to-right" mat-icon-button matTooltip="Zaloguj" matTooltipPosition="below" (click)="onLoginClicked()" *ngIf="!loggedUserName">
+    <mat-icon aria-label="Log in">play_for_work</mat-icon>
+  </button>
+  <button class="icon to-right" mat-icon-button matTooltip="Wyloguj" matTooltipPosition="below" (click)="onLogoutClicked()" *ngIf="loggedUserName">
+    <mat-icon aria-label="Log out">exit_to_app</mat-icon>
+  </button>
+</mat-toolbar>

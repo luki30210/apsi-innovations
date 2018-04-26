@@ -1,0 +1,25 @@
+.navbar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 40px;
+  z-index: 1;
+
+  .mat-button {
+    height: 40px;
+  }
+
+  .active {
+    background-color: rgba(0, 0, 0, 0.15);
+  }
+
+  .loggedUserName {
+    font-size: 17px;
+    margin-right: 9px;
+  }
+}
+
+.to-right {
+  float: right;
+}
