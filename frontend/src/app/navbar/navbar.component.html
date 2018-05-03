@@ -1,5 +1,10 @@
 <mat-toolbar class="navbar" color="primary">
-  <button mat-button color="default" routerLink="/" routerLinkActive="active">Lista innowacji</button>
+  <button mat-button color="default" routerLink="/" routerLinkActive="active">Strona główna</button>
+  <button mat-button color="default" routerLink="/creation" routerLinkActive="active">Dodaj nowy pomysł!</button>
+  <button mat-button color="default" routerLink="/overview" routerLinkActive="active">Przeglądaj pomysły</button>
+
+
+
   <button mat-button color="default" *ngIf="loggedUserName">Tylko dla zalogowanych</button>
 
   <div class="fill-remaining-space"></div>
@@ -12,3 +17,4 @@
     <mat-icon aria-label="Log out">exit_to_app</mat-icon>
   </button>
 </mat-toolbar>
+
