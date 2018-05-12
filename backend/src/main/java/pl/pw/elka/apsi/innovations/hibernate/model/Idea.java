@@ -24,12 +24,12 @@ public class Idea {
     @JoinColumn(name = "SUBJECT_ID", nullable = false)
     private Subject subject;
 
+
     @ManyToMany(targetEntity = Keyword.class, cascade = {CascadeType.ALL})
     @JoinTable(name = "Ideas_Keywords",
-            joinColumns = {@JoinColumn(name = "idea_id")},
-            inverseJoinColumns = {@JoinColumn(name = "keyword_id")})
+            joinColumns = {@JoinColumn(name = "IDEA_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "KEYWORD_ID")})
     private Set<Keyword> keywords;
-
     @Column(name = "BENEFITS", nullable = false)
     private String benefits;
 
