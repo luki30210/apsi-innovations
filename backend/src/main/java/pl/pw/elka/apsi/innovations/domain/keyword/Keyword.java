@@ -1,24 +1,24 @@
-package pl.pw.elka.apsi.innovations.hibernate.model;
+package pl.pw.elka.apsi.innovations.domain.keyword;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "User",
+@Table(name = "Keyword",
         uniqueConstraints = {@UniqueConstraint(columnNames = {"ID"})})
-public class User {
+public class Keyword {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false, unique = true)
     private long id;
 
-    @Column(name = "NAME", nullable = false)
-    private String name;
+    @Column(name = "WORD", nullable = false)
+    private String word;
 
-    public User(){}
+    public Keyword(){}
 
-    public User(String name) {
-        this.name = name;
+    public Keyword(String word) {
+        this.word = word;
     }
 
     public long getId() {
@@ -28,10 +28,10 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getWord() {
+        return word;
     }
-    public void setName(String name) {
-        this.name = name;
+    public void setWord(String word) {
+        this.word = word;
     }
 }

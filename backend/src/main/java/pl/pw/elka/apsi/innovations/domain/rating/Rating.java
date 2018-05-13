@@ -1,11 +1,14 @@
-package pl.pw.elka.apsi.innovations.hibernate.model;
+package pl.pw.elka.apsi.innovations.domain.rating;
+
+import pl.pw.elka.apsi.innovations.domain.idea.Idea;
+import pl.pw.elka.apsi.innovations.domain.user.User;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Opinion",
+@Table(name = "Rating",
         uniqueConstraints = {@UniqueConstraint(columnNames = {"ID"})})
-public class Opinion {
+public class Rating {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,12 +24,12 @@ public class Opinion {
     private User user;
 
     @Column(name = "VALUE", nullable = false)
-    private String text;
+    private int value;
 
-    public Opinion(){}
+    public Rating(){}
 
-    public Opinion(String text, Idea idea, User user) {
-        this.text = text;
+    public Rating(int value, Idea idea, User user) {
+        this.value = value;
         this.idea = idea;
         this.user = user;
     }
@@ -52,10 +55,10 @@ public class Opinion {
         this.user = user;
     }
 
-    public String getText() {
-        return text;
+    public int getValue() {
+        return value;
     }
-    public void setText(String text) {
-        this.text = text;
+    public void setValue(int value) {
+        this.value = value;
     }
 }

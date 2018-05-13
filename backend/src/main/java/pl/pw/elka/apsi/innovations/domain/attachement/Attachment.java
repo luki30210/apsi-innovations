@@ -1,4 +1,6 @@
-package pl.pw.elka.apsi.innovations.hibernate.model;
+package pl.pw.elka.apsi.innovations.domain.attachement;
+
+import pl.pw.elka.apsi.innovations.domain.idea.Idea;
 
 import javax.persistence.*;
 
