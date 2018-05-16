@@ -1,5 +1,7 @@
 package pl.pw.elka.apsi.innovations.domain.idea;
 
+import lombok.Getter;
+import lombok.Setter;
 import pl.pw.elka.apsi.innovations.domain.attachement.Attachment;
 import pl.pw.elka.apsi.innovations.domain.keyword.Keyword;
 import pl.pw.elka.apsi.innovations.domain.opinion.Opinion;
@@ -7,9 +9,12 @@ import pl.pw.elka.apsi.innovations.domain.rating.Rating;
 import pl.pw.elka.apsi.innovations.domain.subject.Subject;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.Set;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "Idea",
         uniqueConstraints = {@UniqueConstraint(columnNames = {"ID"})})
@@ -17,17 +22,20 @@ public class Idea {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", nullable = false, unique = true)
+    @Column(name = "ID")
     private long id;
 
-    @Column(name = "NAME", nullable = false)
+    @NotNull
+    @Column(name = "NAME")
     private String name;
 
-    @Column(name = "DESCRIPTION", nullable = false)
+    @NotNull
+    @Column(name = "DESCRIPTION")
     private String description;
 
+    //@NotNull
     @ManyToOne
-    @JoinColumn(name = "SUBJECT_ID", nullable = false)
+    @JoinColumn(name = "SUBJECT_ID")
     private Subject subject;
 
 
@@ -36,17 +44,22 @@ public class Idea {
             joinColumns = {@JoinColumn(name = "IDEA_ID")},
             inverseJoinColumns = {@JoinColumn(name = "KEYWORD_ID")})
     private Set<Keyword> keywords;
-    @Column(name = "BENEFITS", nullable = false)
+
+    @NotNull
+    @Column(name = "BENEFITS")
     private String benefits;
 
-    @Column(name = "COSTS", nullable = false)
+    @NotNull
+    @Column(name = "COSTS")
     private String costs;
 
-    @Column(name = "STATUS", nullable = false)
-    private String status; // TODO Seperate table?
+    @NotNull
+    @Column(name = "STATUS")
+    private String status = "new"; // TODO Seperate table?
 
-    @Column(name = "ADDITION_DATE", nullable = false)
-    private Date addition_date;
+    @NotNull
+    @Column(name = "ADDITION_DATE")
+    private Date additionDate = new Date();
 
     @OneToMany(mappedBy = "idea")
     private Set<Rating> ratings;
