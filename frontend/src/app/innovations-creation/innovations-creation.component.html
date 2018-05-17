@@ -1,4 +1,70 @@
-<p>
-  Tu trzeba zaimplementować formularz dodawania pomysłu
-</p>
+<div class="new_idea">
+    <h1>
+      {{title}}
+    </h1>
+  <form (ngSubmit)="onSubmit()" #newIdeaForm = "ngForm">
+    <div class="form-group">
+      <div class="name_div">
+        <mat-form-field class="width_90">
+          <input name="name" [(ngModel)] = "idea.name" required #name="ngModel" matInput placeholder="{{idea_name}}">
+        </mat-form-field>
+        <div [hidden]="name.valid||name.pristine" class="alert alert-danger">
+          {{name_req}}
+        </div>
+      </div>
+
+      <div class="subject_div">
+        <mat-form-field>
+          <mat-select [(ngModel)] = "idea.subject" name ="subjectID" required placeholder="{{idea_subject}}">
+            <mat-option *ngFor="let subject of subjects" [value]="subject.id">
+              {{ subject.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="desc_div">
+        <mat-form-field class="width_90">
+          <textarea  class="desc" matInput name="description"  [(ngModel)] = "idea.description" required #description="ngModel" placeholder="{{idea_description}}"></textarea>
+        </mat-form-field>
+        <div [hidden]="description.valid||description.pristine" class="alert alert-danger">
+          {{desc_req}}
+        </div>
+      </div>
+
+      <div class="bene_div">
+        <mat-form-field class="width_90">
+          <textarea class="benefits" matInput name="benefits" [(ngModel)]="idea.benefits" #benefits="ngModel" placeholder="{{idea_benefits}}" required></textarea>
+        </mat-form-field>
+      </div>
+
+      <div class="costs_div">
+        <mat-form-field class="width_90">
+          <textarea class="costs" matInput name="costs" [(ngModel)]="idea.costs" #costs="ngModel" placeholder="{{idea_costs}}" required></textarea>
+        </mat-form-field>
+      </div>
+
+      <div class keywords_div>
+        <mat-form-field class="width_90">
+          <mat-chip-list #chipList>
+            <mat-chip *ngFor="let keyword of idea.keywords" [selectable]="selectable" [removable]="removable" (removed)="removeChip(keyword)">
+              {{keyword}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="{{idea_keywords}}"
+                   [matChipInputFor]="chipList"
+                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                   [matChipInputAddOnBlur]="addOnBlur"
+                   (matChipInputTokenEnd)="addChip($event)"
+                   required>
+          </mat-chip-list>
+        </mat-form-field>
+      </div>
+
+    </div>
+    <div>
+       <button type="submit" class="button" [disabled] = "!newIdeaForm.form.valid">Submit</button>
+    </div>
+  </form>
+  </div>
 

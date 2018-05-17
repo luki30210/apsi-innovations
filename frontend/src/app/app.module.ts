@@ -10,7 +10,10 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { InnovationsOverviewComponent } from './innovations-overview/innovations-overview.component';
 import { InnovationsCreationComponent } from './innovations-creation/innovations-creation.component';
-
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import {IdeasService} from './innovations-creation/IdeasService';
+import {MatInputModule, MatSelectModule, MatChipsModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -24,9 +27,15 @@ import { InnovationsCreationComponent } from './innovations-creation/innovations
     BrowserAnimationsModule,
     BrowserModule,
     MaterialModule,
-    RouterModule.forRoot(ROUTES)
+    MatInputModule,
+    MatSelectModule,
+    MatChipsModule,
+    RouterModule.forRoot(ROUTES),
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [IdeasService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,62 @@
+.alert{
+  border: 2px solid;
+  padding: 10px 5px;
+  border-radius: 4px;
+}
+
+.alert-danger{
+  background-color: #f4c6c6;
+  border-color: #f94545;
+  color: #f94545;
+}
+
+.button {
+  background-color: green; /* Green */
+  border: 2px solid green;
+  color: white;
+  border-radius: 4px;
+  padding: 10px 24px;
+  text-align: center;
+  font-size: 12px;
+  transition-duration: 0.4s;
+  margin: 0px 10px;
+}
+
+.button:hover {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+
+.button:disabled{
+  background-color: grey; /* Green */
+  color: white;
+}
+
+.new_idea
+{
+  position:absolute;
+  left:0; right:0;
+  margin:auto;
+  overflow:auto;
+  width: 99%;
+  height: 100%;
+  background: #f7f2f2;
+  border: 2px solid #cccccc;
+  border-radius: 4px;
+}
+
+.width_90 {
+  width: 90%;
+}
+
+.desc{
+  height: 200px;
+}
+
+.costs .benefits{
+  height: 100px;
+}
+
+mat-form-field{
+  margin: 0px 10px;
+}
