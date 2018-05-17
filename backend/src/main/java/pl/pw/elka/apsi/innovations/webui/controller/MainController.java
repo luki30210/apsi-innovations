@@ -1,4 +1,4 @@
-package pl.pw.elka.apsi.innovations.resources;
+package pl.pw.elka.apsi.innovations.webui.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

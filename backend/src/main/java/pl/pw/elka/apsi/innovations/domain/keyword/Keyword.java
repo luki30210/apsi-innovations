@@ -1,37 +1,29 @@
 package pl.pw.elka.apsi.innovations.domain.keyword;
 
-import javax.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
+@Getter
+@Setter
 @Entity
 @Table(name = "Keyword",
         uniqueConstraints = {@UniqueConstraint(columnNames = {"ID"})})
 public class Keyword {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", nullable = false, unique = true)
+    @Column(name = "ID")
     private long id;
 
-    @Column(name = "WORD", nullable = false)
+    @NotNull
+    @Column(name = "WORD")
     private String word;
 
-    public Keyword(){}
+    public Keyword() {}
 
     public Keyword(String word) {
-        this.word = word;
-    }
-
-    public long getId() {
-        return id;
-    }
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getWord() {
-        return word;
-    }
-    public void setWord(String word) {
         this.word = word;
     }
 }
