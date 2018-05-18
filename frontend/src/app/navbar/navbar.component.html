@@ -1,5 +1,5 @@
 <mat-toolbar class="navbar" color="primary">
-  <button mat-button color="default" routerLink="/" routerLinkActive="active">Strona główna</button>
+  <button mat-button color="default" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Strona główna</button>
   <button mat-button color="default" routerLink="/creation" routerLinkActive="active">Dodaj nowy pomysł!</button>
   <button mat-button color="default" routerLink="/overview" routerLinkActive="active">Przeglądaj pomysły</button>
 
@@ -17,4 +17,3 @@
     <mat-icon aria-label="Log out">exit_to_app</mat-icon>
   </button>
 </mat-toolbar>
-

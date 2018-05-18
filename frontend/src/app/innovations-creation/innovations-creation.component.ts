@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Idea} from '../idea';
-import {IdeasService} from './IdeasService';
-import {MatChipInputEvent} from '@angular/material';
-import {ENTER, COMMA} from '@angular/cdk/keycodes';
-import 'rxjs/add/observable/throw';
-import {HttpErrorResponse} from '@angular/common/http';
-import {IdeaInterface} from './ideaInterface';
+import { MatChipInputEvent } from '@angular/material';
+import { ENTER, COMMA } from '@angular/cdk/keycodes';
+import { HttpErrorResponse } from '@angular/common/http';
+import { IdeaService, Idea } from '../_service/idea.service';
 
 @Component({
   selector: 'app-innovations-creation',
@@ -28,9 +25,9 @@ export class InnovationsCreationComponent implements OnInit {
   idea_benefits = 'Korzyści wynikające z pomysłu: ';
   name_req = 'Musisz podać nazwę pomysłu!';
   desc_req = 'Musisz podać opis pomysłu!';
-  idea = new Idea();
-  subjects = [{id: 1, viewValue: 'jedynka'}, {id: 2, viewValue: 'dwojka'}, {id: 3, viewValue: 'trojka'}];
-  constructor(private _ideasService: IdeasService) { }
+  idea: Idea = { id: null, name: '', description: '', subject: null, keywords: [], benefits: '', costs: '' };
+  subjects = [{ id: 1, viewValue: 'jedynka' }, { id: 2, viewValue: 'dwojka' }, { id: 3, viewValue: 'trojka' }];
+  constructor(private _ideaService: IdeaService) { }
 
   ngOnInit() {
   }
@@ -40,24 +37,24 @@ export class InnovationsCreationComponent implements OnInit {
   }
 
   getIdea() {
-    this._ideasService.getIdea().subscribe(
-      (data: IdeaInterface) => {this.idea = data; },
+    this._ideaService.getIdea().subscribe(
+      (data: Idea) => { this.idea = data; },
       err => console.error(err),
       () => console.log('done loading ideas')
     );
   }
 
   createIdea(idea) {
-    this._ideasService.createIdea(idea)
+    this._ideaService.createIdea(idea)
       .subscribe(
-      data => true,
-      error => this.handleError(error),
+        data => true,
+        error => this.handleError(error),
         () => console.log('creating idea done')
-          );
+      );
   }
 
   updateIdea(idea) {
-    this._ideasService.updateIdea(idea).subscribe(
+    this._ideaService.updateIdea(idea).subscribe(
       data => true,
       error => this.handleError(error),
       () => console.log('updating idea done')
@@ -72,11 +69,11 @@ export class InnovationsCreationComponent implements OnInit {
   addChip(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
-    if (( value || '').trim()) {
+    if ((value || '').trim()) {
       this.idea.keywords.push(value.trim());
     }
     if (input) { input.value = ''; }
-}
+  }
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
