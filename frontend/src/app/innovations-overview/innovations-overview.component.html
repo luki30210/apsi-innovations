@@ -1,3 +1,29 @@
-<p>
-  Tu trzeba zaimplementować przeglądanie pomysłów
-</p>
+<div class='header'>
+  <table>
+    <tr>
+      <td> <h1>{{submitedIdeas}}</h1> </td>
+      <td class="to_right">
+        <button type="submit" routerLinkActive="active" routerLink="/creation">{{addNew}}</button>
+      </td>
+    </tr>
+  </table>
+</div>
+<div class='overview_list'>
+  <mat-nav-list>
+    <!-- TODO: dodanie linku w routerLink na ten do konkretnego pomyslu: stawiam na jakis idea/id (do dogadania) zalezne od id konkretnego z ideas-->
+    <mat-list-item *ngFor="let idea of ideas"routerLinkActive="active">
+        <h3 class='title' matLine>{{idea.title}}</h3>
+        <table class='secondaryInfo'  matLine>
+          <tr>
+            <td colspan="2">{{added}}{{idea.addition_date}} </td>
+          </tr>
+          <tr>
+            <td colspan="1">{{keywordsLab}}</td>
+            <td *ngFor="let keyword of idea.keywords">{{keyword}}</td>
+          </tr>
+        </table>
+        <mat-divider></mat-divider>
+    </mat-list-item>
+  </mat-nav-list>
+</div>
+

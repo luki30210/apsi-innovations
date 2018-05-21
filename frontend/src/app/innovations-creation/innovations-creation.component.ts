@@ -36,14 +36,6 @@ export class InnovationsCreationComponent implements OnInit {
     if (this.idea.id == null) { this.createIdea(this.idea); } else { this.updateIdea(this.idea); }
   }
 
-  getIdea() {
-    this._ideaService.getIdea().subscribe(
-      (data: Idea) => { this.idea = data; },
-      err => console.error(err),
-      () => console.log('done loading ideas')
-    );
-  }
-
   createIdea(idea) {
     this._ideaService.createIdea(idea)
       .subscribe(

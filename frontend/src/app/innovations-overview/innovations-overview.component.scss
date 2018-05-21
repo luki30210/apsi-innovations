@@ -1,0 +1,35 @@
+.mat-nav-list
+{
+  -webkit-transition-duration: 0.5s; /* Safari */
+  transition-duration: 1s;
+  border-style: solid;
+  border-color: lightgrey;
+  border-width: 0px 1px 0px 0px;
+}
+
+.secondaryInfo{
+  color: grey;
+}
+
+.to_right
+{
+  position: absolute;
+  right: 1%;
+  padding: 15px 0px;
+}
+
+button {
+  background-color: #3f51b5;
+  border: 1px solid #36459a;
+  color: white;
+  border-radius: 4px;
+  padding: 8px 24px;
+  text-align: center;
+  font-size: 14px;
+  margin: 10px 10px;
+}
+
+button:hover{
+  cursor: pointer;
+}
+

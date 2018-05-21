@@ -14,7 +14,7 @@ export class IdeaService {
   constructor(private http: HttpClient) { }
 
   getIdea() {
-    return this.http.get<Idea>(url);
+    return this.http.get(url);
   }
 
   createIdea(idea) {
