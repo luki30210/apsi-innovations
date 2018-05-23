@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
 import { IdeaService } from './_service/idea.service';
+import {PagingService} from './_service/PagingService';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { IdeaService } from './_service/idea.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [IdeaService],
+  providers: [IdeaService, PagingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

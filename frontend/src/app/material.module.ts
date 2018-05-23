@@ -18,7 +18,7 @@ import {
   MatListModule,
   // MatMenuModule,
   // MatNativeDateModule,
-  // MatPaginatorModule,
+   // MatPaginatorModule,
   // MatProgressBarModule,
   // MatProgressSpinnerModule,
   // MatRadioModule,

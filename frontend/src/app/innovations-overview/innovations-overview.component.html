@@ -10,8 +10,8 @@
 </div>
 <div class='overview_list'>
   <mat-nav-list>
-    <!-- TODO: dodanie linku w routerLink na ten do konkretnego pomyslu: stawiam na jakis idea/id (do dogadania) zalezne od id konkretnego z ideas-->
-    <mat-list-item *ngFor="let idea of ideas"routerLinkActive="active">
+    <!-- TODO: zamiana linku w routerLink na ten do konkretnego pomyslu: stawiam na jakis idea/id (do dogadania) zalezne od id konkretnego z ideas-->
+    <mat-list-item *ngFor="let idea of pagedIdeas"routerLinkActive="active" routerLink="/idea/{{idea.id}}">
         <h3 class='title' matLine>{{idea.title}}</h3>
         <table class='secondaryInfo'  matLine>
           <tr>
@@ -26,4 +26,10 @@
     </mat-list-item>
   </mat-nav-list>
 </div>
+  <div *ngIf = "paging.pages && paging.pages.length" class="pagination">
+    <a [ngClass] = "{disabled:paging.currentPage === 1,'dis':paging.currentPage === 1}" (click)="setPage(1)">{{firstPage}}</a>
+    <a *ngFor="let page of paging.pages" [ngClass]="{active:paging.currentPage === page}" (click)="setPage(page)">{{page}}</a>
+    <a [ngClass]="{disabled:paging.currentPage === paging.totalPages,'dis':paging.currentPage === paging.totalPages}" (click)="setPage(paging.totalPages)">{{lastPage}}</a>
+  </div>
+
 
