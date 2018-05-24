@@ -1,13 +1,14 @@
 package pl.pw.elka.apsi.innovations.webui.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.pw.elka.apsi.innovations.application.IdeaService;
+import pl.pw.elka.apsi.innovations.webui.dto.IdeaDetailsDto;
 import pl.pw.elka.apsi.innovations.webui.dto.IdeaDto;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -26,9 +27,17 @@ public class IdeaController {
     }
 
     @GetMapping
-    public ResponseEntity<List<IdeaDto>> getAllIdeas() {
-        // TODO: Get all ideas
-        List<IdeaDto> ideaDtos = new ArrayList<>();
-        return ResponseEntity.ok(ideaDtos);
+    public ResponseEntity<List<IdeaDto>> getIdeas(Pageable pageable) {
+        return ResponseEntity.ok(ideaService.getIdeas(pageable));
+    }
+
+    @GetMapping("/count")
+    public ResponseEntity<Long> getAllIdeasCount() {
+        return ResponseEntity.ok(ideaService.getIdeasCount());
+    }
+
+    @GetMapping("/{ideaId}")
+    public ResponseEntity<IdeaDetailsDto> getIdea(@PathVariable Long ideaId) {
+        return ResponseEntity.ok(ideaService.getIdea(ideaId));
     }
 }

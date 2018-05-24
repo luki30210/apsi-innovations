@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Idea, IdeaService} from '../_service/idea.service';
-import {PagingService} from '../_service/PagingService';
+import { Idea, IdeaService } from '../_service/idea.service';
+import { PagingService } from '../_service/PagingService';
 
 @Component({
   selector: 'app-innovations-overview',
@@ -22,30 +22,18 @@ export class InnovationsOverviewComponent implements OnInit {
   added = 'Dodano: ';
   keywordsLab = 'Słowa kluczowe: ';
 
-  ideas1; // TODO: info dla testera: trzeba zakomentowac to gowno pod spodem i podmienic nazwe po lewej od komentarza na 'ideas'
-  ideas = [{'title' : 'Jeden', 'addition_date': '21.05.2018', 'keywords' : ['1st', '2nd']}
-    , {'title' : 'Dwa', 'addition_date': '20.05.2018', 'keywords' : ['1st', '2nd']}
-    , {'title' : 'Trzy', 'addition_date': '19.05.2018' , 'keywords' : ['1st', '2nd']}
-    , {'title' : '4-ry', 'addition_date': '20.05.2018', 'keywords' : ['1st', '2nd']}
-    , {'title' : '5-c', 'addition_date': '19.05.2018' , 'keywords' : ['1st', '2nd']}
-    , {'title' : '6-c', 'addition_date': '20.05.2018', 'keywords' : ['1st', '2nd']}
-    , {'title' : '7-m', 'addition_date': '19.05.2018' , 'keywords' : ['1st', '2nd']}];
+  ideas: Idea[];
 
   constructor(private _ideaService: IdeaService, private pagingService: PagingService) { }
 
-  ngOnInit() {
-   // this.getIdea(); //TODO: odkomentowac przy testach
-    this.setPage(1);
+  private getIdeasPage(pageNumber: number, ideasPerPage: number) {
+    this._ideaService.getIdeas(pageNumber, ideasPerPage)
+      .subscribe(ideas => this.ideas = ideas);
   }
 
-
-  getIdea() {
-    this._ideaService.getIdea().subscribe(
-      // TODO: info dla testera: trzeba podmienic pod spodem this.ideas1 na this.ideas
-      data => { this.ideas1 = data; },
-      err => console.error(err),
-      () => console.log('done loading ideas')
-    );
+  ngOnInit() {
+    this.getIdeasPage(0, 20);
+    // this.setPage(1);
   }
 
   setPage(page: number) {

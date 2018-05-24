@@ -2,6 +2,7 @@ package pl.pw.elka.apsi.innovations.application.assembler;
 
 import org.springframework.stereotype.Component;
 import pl.pw.elka.apsi.innovations.domain.idea.Idea;
+import pl.pw.elka.apsi.innovations.webui.dto.IdeaDetailsDto;
 import pl.pw.elka.apsi.innovations.webui.dto.IdeaDto;
 
 import java.util.List;
@@ -29,5 +30,23 @@ public class IdeaAssembler {
 
     public static List<IdeaDto> assemble(List<Idea> ideas) {
         return ideas.stream().map(IdeaAssembler::assemble).collect(Collectors.toList());
+    }
+
+    public static IdeaDetailsDto assembleWithDetails(Idea idea, String ratingMaybe) {
+        IdeaDetailsDto dto = new IdeaDetailsDto();
+
+        dto.setId(idea.getId());
+        dto.setName(idea.getName());
+        dto.setDescription(idea.getDescription());
+        dto.setSubject(idea.getSubject() != null ? idea.getSubject().getName() : "");
+        dto.setKeywords(idea.getKeywords() != null ? idea.getKeywords().stream().map(k -> k.getWord()).collect(Collectors.toSet()) : null);
+        dto.setBenefits(idea.getBenefits());
+        dto.setCosts(idea.getCosts());
+        dto.setStatus(idea.getStatus());
+        dto.setAdditionDate(idea.getAdditionDate());
+
+        // TODO: expand method by rating...
+
+        return dto;
     }
 }

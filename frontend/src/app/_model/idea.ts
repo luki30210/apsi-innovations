@@ -6,4 +6,5 @@ export interface Idea {
   keywords: string[];
   benefits: string;
   costs: string;
+  additionDate: Date;
 }
