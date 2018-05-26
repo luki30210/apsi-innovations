@@ -16,7 +16,7 @@ export class IdeaService {
   constructor(private http: HttpClient) { }
 
   getIdeas(pageNumber: number, ideasPerPage: number): Observable<Idea[]> {
-    const url = this.url + '?p=' + pageNumber + '&l=' + ideasPerPage;
+    const url = this.url + '?page=' + pageNumber + '&size=' + ideasPerPage;
     return this.http.get<Idea[]>(url, this.httpOptions);
   }
 
