@@ -2,8 +2,6 @@ export class PagingService {
   getPaging(totalItems: number, currentPage: number = 1, pageSize: number = 15) {
     let startPage: number;
     let endPage: number;
-    let startIndex: number;
-    let endIndex: number;
     let pages: number[];
 
     const totalPages = Math.ceil(totalItems / pageSize);
@@ -25,8 +23,6 @@ export class PagingService {
       }
     }
 
-    startIndex = (currentPage - 1) * pageSize;
-    endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
     // dla ng-for potrzebny jest array po numberach .keys zwraca iterator, po ktorym moze chodzic ng-for, a map przerzuca tam wartosci
     pages = Array.from(Array((endPage + 1) - startPage).keys()).map(i => startPage + i);
 
@@ -37,8 +33,6 @@ export class PagingService {
       totalPages: totalPages,
       startPage: startPage,
       endPage: endPage,
-      startIndex: startIndex,
-      endIndex: endIndex,
       pages: pages
     };
   }

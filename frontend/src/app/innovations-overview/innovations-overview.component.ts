@@ -9,13 +9,11 @@ import { PagingService } from '../_service/PagingService';
 })
 export class InnovationsOverviewComponent implements OnInit {
 
-  // TODO: pagination ustawia liczbe pomyslow na strone paginacji (?) - dla wstepnych testow ustawilem na 2,
-  // pozniej na jakies 10 czy 15 trzeba bedzie zmienic
+  allIdeas: number;
   ideasPerPage = 2;
   firstPage = 'Pierwsza';
   lastPage = 'Ostatnia';
   paging: any = {};
-  pagedIdeas: any[];
 
   addNew = 'Dodaj nowy pomysł';
   submitedIdeas = 'Zgłoszone pomysły ';
@@ -29,16 +27,25 @@ export class InnovationsOverviewComponent implements OnInit {
   private getIdeasPage(pageNumber: number, ideasPerPage: number) {
     this._ideaService.getIdeas(pageNumber, ideasPerPage)
       .subscribe(ideas => this.ideas = ideas);
+
+    if (this.allIdeas != null ) { this.setPage(pageNumber + 1); }
+  }
+
+  private getIdeasCount() {
+    this._ideaService.getIdeasCount().subscribe(count => {
+      this.allIdeas = count;
+      this.setPage(1);
+    });
+
   }
 
   ngOnInit() {
-    this.getIdeasPage(0, 20);
-    // this.setPage(1);
+    this.getIdeasCount();
+    this.getIdeasPage(0, this.ideasPerPage);
   }
 
   setPage(page: number) {
-    this.paging = this.pagingService.getPaging(this.ideas.length, page, this.ideasPerPage);
-    this.pagedIdeas = this.ideas.slice(this.paging.startIndex, this.paging.endIndex + 1);
+    this.paging = this.pagingService.getPaging(this.allIdeas, page, this.ideasPerPage);
   }
 
 }
