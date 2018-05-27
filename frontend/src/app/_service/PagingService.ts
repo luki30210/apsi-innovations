@@ -36,4 +36,28 @@ export class PagingService {
       pages: pages
     };
   }
+
+  changeSorting(sortBy: string, actualSortDir: string, actualSortBy: string) {
+    if (actualSortBy !== sortBy) {
+      actualSortBy = sortBy;
+      actualSortDir = 'asc';
+    } else {
+      switch (actualSortDir) {
+        case null:
+          actualSortDir = 'asc';
+          break;
+        case 'asc':
+          actualSortDir = 'desc';
+          break;
+        case 'desc':
+          actualSortDir = '';
+          actualSortBy = '';
+          break;
+      }
+    }
+    return{
+      sortBy: actualSortBy,
+      sortDir: actualSortDir
+    };
+  }
 }

@@ -26,8 +26,19 @@
     </mat-list-item>
   </mat-nav-list>
 </div>
-  <div *ngIf = "paging.pages && paging.pages.length" class="pagination">
-    <a [ngClass] = "{disabled:paging.currentPage === 1,'dis':paging.currentPage === 1}" (click)="getIdeasPage(0,ideasPerPage)">{{firstPage}}</a>
-    <a *ngFor="let page of paging.pages" [ngClass]="{active:paging.currentPage === page}" (click)="getIdeasPage(page-1,ideasPerPage)">{{page}}</a>
-    <a [ngClass]="{disabled:paging.currentPage === paging.totalPages,'dis':paging.currentPage === paging.totalPages}" (click)="getIdeasPage(paging.totalPages-1,ideasPerPage)">{{lastPage}}</a>
-  </div>
+<div>
+  <table>
+    <tr>
+      <td><button type="submit" (click)="changeSorting('name')">{{sortByName}}</button></td>
+      <td><button type="submit" (click)="changeSorting('additionDate')">{{sortByDate}}</button></td>
+      <td class="to_right">
+
+        <div *ngIf = "paging.pages && paging.pages.length" class="pagination">
+          <a [ngClass] = "{disabled:paging.currentPage === 1,'dis':paging.currentPage === 1}" (click)="getIdeasPage(0,ideasPerPage,sortingSetup.sortDir, sortingSetup.sortBy)">{{firstPage}}</a>
+          <a *ngFor="let page of paging.pages" [ngClass]="{active:paging.currentPage === page}" (click)="getIdeasPage(page-1,ideasPerPage,sortingSetup.sortDir, sortingSetup.sortBy)">{{page}}</a>
+          <a [ngClass]="{disabled:paging.currentPage === paging.totalPages,'dis':paging.currentPage === paging.totalPages}" (click)="getIdeasPage(paging.totalPages-1,ideasPerPage,sortingSetup.sortDir, sortingSetup.sortBy)">{{lastPage}}</a>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>

@@ -15,8 +15,11 @@ export class IdeaService {
 
   constructor(private http: HttpClient) { }
 
-  getIdeas(pageNumber: number, ideasPerPage: number): Observable<Idea[]> {
-    const url = this.url + '?page=' + pageNumber + '&size=' + ideasPerPage;
+  getIdeas(pageNumber: number, ideasPerPage: number, sortBy: string= '', sortDir: string= ''): Observable<Idea[]> {
+    let url = this.url + '?page=' + pageNumber + '&size=' + ideasPerPage;
+    if (sortBy !== '') { url += '&sort=' + sortBy + ',' + sortDir;
+    }
+    console.log(url);
     return this.http.get<Idea[]>(url, this.httpOptions);
   }
 
