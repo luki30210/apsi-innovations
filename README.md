@@ -38,3 +38,7 @@ Run `ng generate component component-name` to generate a new component. You can 
 https://material.angular.io/
 
 https://material.io/icons/
+
+## TO DO
+
+admin panel (subjects create, ...)

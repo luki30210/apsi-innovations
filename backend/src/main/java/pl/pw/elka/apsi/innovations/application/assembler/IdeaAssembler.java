@@ -10,9 +10,14 @@ import java.util.stream.Collectors;
 
 @Component
 public class IdeaAssembler {
-    private IdeaAssembler() {}
+    private IdeaAssembler() {
+    }
 
     public static IdeaDto assemble(Idea idea) {
+        if (idea == null) {
+            return null;
+        }
+
         IdeaDto dto = new IdeaDto();
 
         dto.setId(idea.getId());
@@ -29,10 +34,17 @@ public class IdeaAssembler {
     }
 
     public static List<IdeaDto> assemble(List<Idea> ideas) {
+        if (ideas == null) {
+            return null;
+        }
         return ideas.stream().map(IdeaAssembler::assemble).collect(Collectors.toList());
     }
 
     public static IdeaDetailsDto assembleWithDetails(Idea idea, String ratingMaybe) {
+        if (idea == null) {
+            return null;
+        }
+
         IdeaDetailsDto dto = new IdeaDetailsDto();
 
         dto.setId(idea.getId());

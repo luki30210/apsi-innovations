@@ -1,7 +1,5 @@
-<div class="new_idea">
-    <h1>
-      {{title}}
-    </h1>
+
+  <h2 style="margin-left: 10px;">{{title}}</h2>
   <form (ngSubmit)="onSubmit()" #newIdeaForm = "ngForm">
     <div class="form-group">
       <div class="name_div">
@@ -66,5 +64,5 @@
        <button type="submit" class="button" [disabled] = "!newIdeaForm.form.valid">Submit</button>
     </div>
   </form>
-  </div>
+
 

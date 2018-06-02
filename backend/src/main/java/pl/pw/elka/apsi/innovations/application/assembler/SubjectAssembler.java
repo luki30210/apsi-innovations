@@ -13,6 +13,10 @@ public class SubjectAssembler {
     }
 
     public static SubjectDto assemble(Subject subject) {
+        if (subject == null) {
+            return null;
+        }
+
         SubjectDto dto = new SubjectDto();
 
         dto.setId(subject.getId());
@@ -22,6 +26,9 @@ public class SubjectAssembler {
     }
 
     public static List<SubjectDto> assemble(List<Subject> subjects) {
+        if (subjects == null) {
+            return null;
+        }
         return subjects.stream().map(SubjectAssembler::assemble).collect(Collectors.toList());
     }
 }

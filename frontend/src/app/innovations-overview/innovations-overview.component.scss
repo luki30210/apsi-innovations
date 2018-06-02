@@ -11,11 +11,11 @@
   color: grey;
 }
 
-.to_right
-{
-  position: absolute;
-  right: 1%;
-  padding: 15px 0px;
+.header {
+  display: flex;
+  button {
+    float: right;
+  }
 }
 
 button {

@@ -6,4 +6,12 @@
 
 .app-container {
   padding-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (min-width: 993px) {
+  .app-container {
+    width: 990px;
+  }
 }
