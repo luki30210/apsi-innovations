@@ -18,7 +18,7 @@ public class IdeaAssembler {
         dto.setId(idea.getId());
         dto.setName(idea.getName());
         dto.setDescription(idea.getDescription());
-        dto.setSubject(idea.getSubject() != null ? idea.getSubject().getName() : "");
+        dto.setSubject(SubjectAssembler.assemble(idea.getSubject()));
         dto.setKeywords(idea.getKeywords() != null ? idea.getKeywords().stream().map(k -> k.getWord()).collect(Collectors.toSet()) : null);
         dto.setBenefits(idea.getBenefits());
         dto.setCosts(idea.getCosts());
@@ -38,7 +38,7 @@ public class IdeaAssembler {
         dto.setId(idea.getId());
         dto.setName(idea.getName());
         dto.setDescription(idea.getDescription());
-        dto.setSubject(idea.getSubject() != null ? idea.getSubject().getName() : "");
+        dto.setSubject(SubjectAssembler.assemble(idea.getSubject()));
         dto.setKeywords(idea.getKeywords() != null ? idea.getKeywords().stream().map(k -> k.getWord()).collect(Collectors.toSet()) : null);
         dto.setBenefits(idea.getBenefits());
         dto.setCosts(idea.getCosts());

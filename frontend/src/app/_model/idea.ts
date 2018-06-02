@@ -1,8 +1,10 @@
+import { Subject } from './subject';
+
 export interface Idea {
   id: number;
   name: string;
   description: string;
-  subject: number;
+  subject: Subject;
   keywords: string[];
   benefits: string;
   costs: string;

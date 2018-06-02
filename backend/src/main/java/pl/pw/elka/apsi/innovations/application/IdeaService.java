@@ -7,6 +7,7 @@ import pl.pw.elka.apsi.innovations.application.assembler.IdeaAssembler;
 import pl.pw.elka.apsi.innovations.domain.idea.Idea;
 import pl.pw.elka.apsi.innovations.domain.idea.IdeaRepository;
 import pl.pw.elka.apsi.innovations.domain.keyword.Keyword;
+import pl.pw.elka.apsi.innovations.domain.subject.Subject;
 import pl.pw.elka.apsi.innovations.shared.exception.IdeaNotFoundException;
 import pl.pw.elka.apsi.innovations.webui.dto.IdeaDetailsDto;
 import pl.pw.elka.apsi.innovations.webui.dto.IdeaDto;
@@ -22,10 +23,13 @@ public class IdeaService {
 
     private KeywordService keywordService;
 
+    private SubjectService subjectService;
+
     @Autowired
-    public IdeaService(IdeaRepository ideaRepository, KeywordService keywordService) {
+    public IdeaService(IdeaRepository ideaRepository, KeywordService keywordService, SubjectService subjectService) {
         this.ideaRepository = ideaRepository;
         this.keywordService = keywordService;
+        this.subjectService = subjectService;
     }
 
     public IdeaDto addIdea(IdeaDto ideaDto) {
@@ -33,8 +37,8 @@ public class IdeaService {
         newIdea.setName(ideaDto.getName());
         newIdea.setDescription(ideaDto.getDescription());
 
-        // TODO: Getting subject from database
-        //newIdea.setSubject(new Subject(ideaDto.getSubject()));
+        final Subject subject = subjectService.getSubject(ideaDto.getSubject().getId());
+        newIdea.setSubject(subject);
 
         Set<Keyword> keywords = keywordService.getOrCreateAndGetIfNotExist(ideaDto.getKeywords());
         newIdea.setKeywords(keywords);

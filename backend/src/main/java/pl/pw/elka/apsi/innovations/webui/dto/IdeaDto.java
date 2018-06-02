@@ -21,7 +21,7 @@ public class IdeaDto {
     private String description;
 
     @NotNull
-    private String subject;
+    private SubjectDto subject;
 
     private Set<String> keywords;
 

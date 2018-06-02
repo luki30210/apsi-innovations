@@ -15,9 +15,9 @@
 
       <div class="subject_div">
         <mat-form-field>
-          <mat-select [(ngModel)] = "idea.subject" name ="subjectID" required placeholder="{{idea_subject}}">
+          <mat-select [(ngModel)] = "idea.subject.id" name ="subjectID" required placeholder="{{idea_subject}}">
             <mat-option *ngFor="let subject of subjects" [value]="subject.id">
-              {{ subject.viewValue }}
+              {{ subject.name }}
             </mat-option>
           </mat-select>
         </mat-form-field>

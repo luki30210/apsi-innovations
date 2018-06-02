@@ -3,6 +3,7 @@ import { MatChipInputEvent } from '@angular/material';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { HttpErrorResponse } from '@angular/common/http';
 import { IdeaService, Idea } from '../_service/idea.service';
+import { SubjectService, Subject } from '../_service/subject.service';
 
 @Component({
   selector: 'app-innovations-creation',
@@ -25,11 +26,14 @@ export class InnovationsCreationComponent implements OnInit {
   idea_benefits = 'Korzyści wynikające z pomysłu: ';
   name_req = 'Musisz podać nazwę pomysłu!';
   desc_req = 'Musisz podać opis pomysłu!';
-  idea: Idea = { id: null, name: '', description: '', subject: null, keywords: [], benefits: '', costs: '', additionDate: new Date() };
-  subjects = [{ id: 1, viewValue: 'jedynka' }, { id: 2, viewValue: 'dwojka' }, { id: 3, viewValue: 'trojka' }];
-  constructor(private _ideaService: IdeaService) { }
+  idea: Idea = {
+    id: null, name: '', description: '', subject: { id: null, name: '' }, keywords: [], benefits: '', costs: '', additionDate: new Date()
+  };
+  subjects: Subject[];
+  constructor(private _ideaService: IdeaService, private _subjectService: SubjectService) { }
 
   ngOnInit() {
+    this.getSubjects();
   }
 
   onSubmit() {
@@ -65,6 +69,14 @@ export class InnovationsCreationComponent implements OnInit {
       this.idea.keywords.push(value.trim());
     }
     if (input) { input.value = ''; }
+  }
+
+  private getSubjects() {
+    this._subjectService.getSubjects()
+      .subscribe(
+        subjects => this.subjects = subjects,
+        error => this.handleError(error)
+      );
   }
 
   private handleError(error: HttpErrorResponse) {
