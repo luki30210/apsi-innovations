@@ -6,21 +6,26 @@ import org.springframework.stereotype.Service;
 import pl.pw.elka.apsi.innovations.application.assembler.IdeaAssembler;
 import pl.pw.elka.apsi.innovations.domain.idea.Idea;
 import pl.pw.elka.apsi.innovations.domain.idea.IdeaRepository;
+import pl.pw.elka.apsi.innovations.domain.keyword.Keyword;
 import pl.pw.elka.apsi.innovations.shared.exception.IdeaNotFoundException;
 import pl.pw.elka.apsi.innovations.webui.dto.IdeaDetailsDto;
 import pl.pw.elka.apsi.innovations.webui.dto.IdeaDto;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
 public class IdeaService {
-    IdeaRepository ideaRepository;
+    private IdeaRepository ideaRepository;
+
+    private KeywordService keywordService;
 
     @Autowired
-    public IdeaService(IdeaRepository ideaRepository) {
+    public IdeaService(IdeaRepository ideaRepository, KeywordService keywordService) {
         this.ideaRepository = ideaRepository;
+        this.keywordService = keywordService;
     }
 
     public IdeaDto addIdea(IdeaDto ideaDto) {
@@ -28,9 +33,11 @@ public class IdeaService {
         newIdea.setName(ideaDto.getName());
         newIdea.setDescription(ideaDto.getDescription());
 
-        // TODO: Getting subject and keywords from database
+        // TODO: Getting subject from database
         //newIdea.setSubject(new Subject(ideaDto.getSubject()));
-        //newIdea.setKeywords(ideaDto.getKeywords().stream().map(k -> new Keyword(k)).collect(Collectors.toSet()));
+
+        Set<Keyword> keywords = keywordService.getOrCreateAndGetIfNotExist(ideaDto.getKeywords());
+        newIdea.setKeywords(keywords);
 
         newIdea.setBenefits(ideaDto.getBenefits());
         newIdea.setCosts(ideaDto.getCosts());

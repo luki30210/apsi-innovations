@@ -9,14 +9,9 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @Entity
-@Table(name = "Keyword",
-        uniqueConstraints = {@UniqueConstraint(columnNames = {"ID"})})
+@Table(name = "Keyword")
 public class Keyword {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private long id;
-
     @NotNull
     @Column(name = "WORD")
     private String word;
