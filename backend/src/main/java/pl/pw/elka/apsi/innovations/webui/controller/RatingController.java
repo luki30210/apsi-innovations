@@ -1,11 +1,10 @@
 package pl.pw.elka.apsi.innovations.webui.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import pl.pw.elka.apsi.innovations.application.RatingService;
 import pl.pw.elka.apsi.innovations.domain.attachement.AttachmentRepository;
 import pl.pw.elka.apsi.innovations.domain.idea.Idea;
 import pl.pw.elka.apsi.innovations.domain.idea.IdeaRepository;
@@ -24,8 +23,8 @@ import java.util.Optional;
  * Created by Łukasz on 2018-05-13.
  */
 @Controller
-@RequestMapping(path = "/")
-public class MainController {
+@RequestMapping(path = "/api/idea/{ideaId}/rating")
+public class RatingController {
     @Autowired
     AttachmentRepository attachmentRepository;
     @Autowired
@@ -40,6 +39,9 @@ public class MainController {
     SubjectRepository subjectRepository;
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    RatingService ratingService;
 
     @PostMapping (path = "/addOpinion")
     public @ResponseBody String addNewOpinion(@RequestParam String text, @RequestParam long ideaId, @RequestParam long userId){
@@ -77,6 +79,12 @@ public class MainController {
             return "saved";
         }
 
+    }
+
+    @GetMapping("mean")
+    public ResponseEntity<Double> getMeanRating(@PathVariable Long ideaId) {
+        Double meanRating = ratingService.getMeanRatingForIdea(ideaId);
+        return ResponseEntity.ok(meanRating);
     }
 }
 

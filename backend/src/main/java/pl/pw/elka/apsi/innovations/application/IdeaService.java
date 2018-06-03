@@ -67,4 +67,8 @@ public class IdeaService {
         }
         throw new IdeaNotFoundException("Idea with id " + id + " does not exist.");
     }
+
+    public Boolean exists(Long ideaId) {
+        return ideaRepository.existsById(ideaId);
+    }
 }
