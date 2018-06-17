@@ -9,4 +9,5 @@ export interface Idea {
   benefits: string;
   costs: string;
   additionDate: Date;
+  meanRating: number;
 }
