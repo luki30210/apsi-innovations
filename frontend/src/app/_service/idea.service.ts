@@ -38,6 +38,11 @@ export class IdeaService {
     const data = JSON.stringify(idea);
     return this.http.put(this.url + idea.id, data, this.httpOptions);
   }
+
+  getMeanRating(idea) {
+    const url = this.url + '/mean'
+    return this.http.get<number>(url + idea.id, this.httpOptions);
+  }
 }
 
 export { Idea };
