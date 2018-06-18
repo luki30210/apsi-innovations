@@ -40,8 +40,8 @@ export class IdeaService {
   }
 
   getMeanRating(idea) {
-    const url = this.url + '/mean'
-    return this.http.get<number>(url + idea.id, this.httpOptions);
+    const url = this.url + '/' + idea.id + '/rating/mean';
+    return this.http.get<number>(url, this.httpOptions);
   }
 }
 
