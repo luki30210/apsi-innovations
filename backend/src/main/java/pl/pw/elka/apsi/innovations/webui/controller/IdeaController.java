@@ -38,6 +38,6 @@ public class IdeaController {
 
     @GetMapping("/{ideaId}")
     public ResponseEntity<IdeaDetailsDto> getIdea(@PathVariable Long ideaId) {
-        return ResponseEntity.ok(ideaService.getIdea(ideaId));
+        return ResponseEntity.ok(ideaService.getIdeaDetailsDto(ideaId));
     }
 }

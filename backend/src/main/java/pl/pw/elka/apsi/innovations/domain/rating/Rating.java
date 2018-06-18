@@ -20,18 +20,22 @@ public class Rating {
     private Idea idea;
 
     @ManyToOne
-    @JoinColumn(name = "USER_ID", nullable = false)
+    @JoinColumn(name = "USER_ID")
     private User user;
 
     @Column(name = "VALUE", nullable = false)
     private int value;
 
+    @Column(name = "OPINION")
+    private String opinion;
+
     public Rating(){}
 
-    public Rating(int value, Idea idea, User user) {
+    public Rating(int value, Idea idea, User user, String opinion) {
         this.value = value;
         this.idea = idea;
         this.user = user;
+        this.opinion = opinion;
     }
 
     public long getId() {
@@ -40,6 +44,9 @@ public class Rating {
     public void setId(long id) {
         this.id = id;
     }
+
+    public String getOpinion() {return opinion;}
+    public void setOpinion(String opinion) {this.opinion = opinion;}
 
     public Idea getIdea() {
         return idea;

@@ -60,7 +60,7 @@ public class IdeaService {
         return ideaRepository.count();
     }
 
-    public IdeaDetailsDto getIdea(Long id) {
+    public IdeaDetailsDto getIdeaDetailsDto(Long id) {
         final Optional<Idea> idea = ideaRepository.findById(id);
         if (idea.isPresent()) {
             return IdeaAssembler.assembleWithDetails(idea.get(), null);
@@ -68,7 +68,17 @@ public class IdeaService {
         throw new IdeaNotFoundException("Idea with id " + id + " does not exist.");
     }
 
+    public Idea getIdea(Long id) {
+        final Optional<Idea> idea = ideaRepository.findById(id);
+        if (idea.isPresent()) {
+            return idea.get();
+        }
+        throw new IdeaNotFoundException("Idea with id " + id + " does not exist.");
+    }
+
+
     public Boolean exists(Long ideaId) {
         return ideaRepository.existsById(ideaId);
     }
+
 }

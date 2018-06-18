@@ -9,14 +9,14 @@ import pl.pw.elka.apsi.innovations.domain.attachement.AttachmentRepository;
 import pl.pw.elka.apsi.innovations.domain.idea.Idea;
 import pl.pw.elka.apsi.innovations.domain.idea.IdeaRepository;
 import pl.pw.elka.apsi.innovations.domain.keyword.KeywordRepository;
-import pl.pw.elka.apsi.innovations.domain.opinion.Opinion;
-import pl.pw.elka.apsi.innovations.domain.opinion.OpinionRepository;
 import pl.pw.elka.apsi.innovations.domain.rating.Rating;
 import pl.pw.elka.apsi.innovations.domain.rating.RatingRepository;
 import pl.pw.elka.apsi.innovations.domain.subject.SubjectRepository;
 import pl.pw.elka.apsi.innovations.domain.user.User;
 import pl.pw.elka.apsi.innovations.domain.user.UserRepository;
+import pl.pw.elka.apsi.innovations.webui.dto.RatingDto;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 /**
@@ -26,13 +26,9 @@ import java.util.Optional;
 @RequestMapping(path = "/api/idea/{ideaId}/rating")
 public class RatingController {
     @Autowired
-    AttachmentRepository attachmentRepository;
-    @Autowired
     IdeaRepository ideaRepository;
     @Autowired
     KeywordRepository keywordRepository;
-    @Autowired
-    OpinionRepository opinionRepository;
     @Autowired
     RatingRepository ratingRepository;
     @Autowired
@@ -43,42 +39,10 @@ public class RatingController {
     @Autowired
     RatingService ratingService;
 
-    @PostMapping (path = "/addOpinion")
-    public @ResponseBody String addNewOpinion(@RequestParam String text, @RequestParam long ideaId, @RequestParam long userId){
-        Optional<Idea> idea = ideaRepository.findById(ideaId);
-        Optional<User> user = userRepository.findById(userId);
-        if(!idea.isPresent() ){
-            return "There is no idea with given id";
-        }
-        else if (!user.isPresent()){
-            return "There is no user with given id";
-        }
-
-        else{
-            Opinion opinion = new Opinion(text, idea.get(), user.get());
-            opinionRepository.save(opinion);
-            return "saved";
-        }
-
-    }
-
     @PostMapping (path = "/addRating")
-    public @ResponseBody String addNewRating(@RequestParam int value, @RequestParam long ideaId, @RequestParam long userId){
-        Optional<Idea> idea = ideaRepository.findById(ideaId);
-        Optional<User> user = userRepository.findById(userId);
-        if(!idea.isPresent() ){
-            return "There is no idea with given id";
-        }
-        else if (!user.isPresent()){
-            return "There is no user with given id";
-        }
-
-        else{
-            Rating rating = new Rating(value, idea.get(), user.get());
-            ratingRepository.save(rating);
-            return "saved";
-        }
-
+    public @ResponseBody ResponseEntity<RatingDto> addNewRating(@PathVariable(value = "ideaId") long ideaId , @Valid @RequestBody RatingDto ratingDto){
+        ratingDto.setIdeaId(ideaId);
+        return ResponseEntity.ok(ratingService.addRating(ratingDto));
     }
 
     @GetMapping("mean")
