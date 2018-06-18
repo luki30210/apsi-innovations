@@ -18,6 +18,9 @@
             <td *ngFor="let keyword of idea.keywords">{{keyword}}</td>
           </tr>
         </table>
+        <div  class='secondaryInfo'>
+          {{rate}}{{idea.meanRating == null ? 0 : idea.meanRating}}
+        </div>
         <mat-divider></mat-divider>
     </mat-list-item>
   </mat-nav-list>

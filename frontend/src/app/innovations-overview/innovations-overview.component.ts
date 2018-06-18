@@ -11,12 +11,19 @@ export class InnovationsOverviewComponent implements OnInit {
 
   sortByName = 'Sortuj po nazwie';
   sortByDate = 'Sortuj po dacie';
+  sortByRating = 'Sortuj po ocenach';
+
+  byName = 'name';
+  byDate = 'additionDate';
+  byRating = 'rating';
+
   sortingSetup: any = {};
   sortBy: string;
   sortDir: string;
 
+  rate = 'Ocena: ';
   allIdeas: number;
-  ideasPerPage = 3;
+  ideasPerPage = 20;
   firstPage = 'Pierwsza';
   lastPage = 'Ostatnia';
   paging: any = {};
@@ -32,9 +39,18 @@ export class InnovationsOverviewComponent implements OnInit {
 
   private getIdeasPage(pageNumber: number, ideasPerPage: number, sortBy: string= '', sortDir: string= '') {
     this._ideaService.getIdeas(pageNumber, ideasPerPage, sortBy, sortDir)
-      .subscribe(ideas => this.ideas = ideas);
+      .subscribe(ideas => {
+        console.log(ideas);
+        this.ideas = ideas;
+      });
 
     if (this.allIdeas != null ) { this.setPage(pageNumber + 1); }
+    for (let i = 0; i < this.ideas.length; i++) {
+
+     this._ideaService.getMeanRating(this.ideas[i].id).subscribe( mean => {
+        this.ideas[i].meanRating = mean;
+      });
+    }
   }
 
   private getIdeasCount() {
