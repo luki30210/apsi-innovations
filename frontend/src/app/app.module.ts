@@ -13,12 +13,16 @@ import { NavbarComponent } from './navbar/navbar.component';
 
 import { IdeaService } from './_service/idea.service';
 import {PagingService} from './_service/PagingService';
+import {DialogContentComponent, RatingModalComponent} from './rating-modal/rating-modal.component';
+import {MatDialogModule} from '@angular/material';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    routeComponents
+    routeComponents,
+    RatingModalComponent,
+    DialogContentComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -27,9 +31,11 @@ import {PagingService} from './_service/PagingService';
     RouterModule.forRoot(ROUTES),
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule
   ],
   providers: [IdeaService, PagingService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogContentComponent]
 })
 export class AppModule { }

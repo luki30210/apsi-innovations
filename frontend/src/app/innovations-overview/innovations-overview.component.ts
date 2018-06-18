@@ -29,6 +29,7 @@ export class InnovationsOverviewComponent implements OnInit {
   paging: any = {};
 
   addNew = 'Dodaj nowy pomysł';
+  addNewRating = 'Oceń pomysł';
   submitedIdeas = 'Zgłoszone pomysły ';
   added = 'Dodano: ';
   keywordsLab = 'Słowa kluczowe: ';
