@@ -27,7 +27,8 @@ export class InnovationsCreationComponent implements OnInit {
   name_req = 'Musisz podać nazwę pomysłu!';
   desc_req = 'Musisz podać opis pomysłu!';
   idea: Idea = {
-    id: null, name: '', description: '', subject: { id: null, name: '' }, keywords: [], benefits: '', costs: '', additionDate: new Date()
+    id: null, name: '', description: '', subject: { id: null, name: '' }, keywords: [], benefits: '', costs: '', additionDate: new Date(),
+    meanRating: null
   };
   subjects: Subject[];
   constructor(private _ideaService: IdeaService, private _subjectService: SubjectService) { }

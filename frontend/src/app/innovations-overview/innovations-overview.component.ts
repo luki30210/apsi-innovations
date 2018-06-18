@@ -21,7 +21,7 @@ export class InnovationsOverviewComponent implements OnInit {
   sortBy: string;
   sortDir: string;
 
-  rate = 'Ocena: ';
+  rate = 'Średnia ocena: ';
   allIdeas: number;
   ideasPerPage = 20;
   firstPage = 'Pierwsza';
