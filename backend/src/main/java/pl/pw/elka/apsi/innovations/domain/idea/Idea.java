@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 import pl.pw.elka.apsi.innovations.domain.attachement.Attachment;
 import pl.pw.elka.apsi.innovations.domain.keyword.Keyword;
-import pl.pw.elka.apsi.innovations.domain.opinion.Opinion;
 import pl.pw.elka.apsi.innovations.domain.rating.Rating;
 import pl.pw.elka.apsi.innovations.domain.subject.Subject;
 
@@ -63,9 +62,6 @@ public class Idea {
 
     @OneToMany(mappedBy = "idea")
     private Set<Rating> ratings;
-
-    @OneToMany(mappedBy = "idea")
-    private Set<Opinion> opinions;
 
     @OneToMany(mappedBy = "idea")
     private Set<Attachment> attachments;
