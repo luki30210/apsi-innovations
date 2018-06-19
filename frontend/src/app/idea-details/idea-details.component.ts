@@ -14,6 +14,10 @@ export class IdeaDetailsComponent implements OnInit {
   isLoaded = false;
   ideaService: IdeaService;
   descriptionHead = 'Opis pomysłu';
+  nameHead = 'Nazwa pomysłu: ';
+  subjectHead = 'Temat pomysłu: ';
+  costsHead = 'Szacowany koszt: ';
+  benefitsHead = 'Korzyści płynące z pomysłu:';
   constructor(private route: ActivatedRoute, private _ideaService: IdeaService) {
     this.route.params.subscribe(params =>
         _ideaService.getIdea(params['id']).subscribe(idea => {

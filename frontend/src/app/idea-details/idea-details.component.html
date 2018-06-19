@@ -1,6 +1,23 @@
 <div *ngIf="isLoaded">
   <h2>
+    {{nameHead}}
+  </h2>
+  <p>{{idea.name}}</p>
+  <h2>
+    {{subjectHead}}
+  </h2>
+  <p>{{idea.subject.name}}</p>
+  <h2>
     {{descriptionHead}}
   </h2>
-  <p>{{idea.description == null ? '' : idea.description}}</p>
+  <p>{{idea.description}}</p>
+  <h2>
+    {{benefitsHead}}
+  </h2>
+  <p>{{idea.benefits}}</p>
+  <h2>
+    {{costsHead}}
+  </h2>
+  <p>{{idea.costs}}</p>
+
 </div>
