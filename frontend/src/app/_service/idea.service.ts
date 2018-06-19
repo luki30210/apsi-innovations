@@ -43,6 +43,11 @@ export class IdeaService {
     const url = this.url + '/' + idea.id + '/rating/mean';
     return this.http.get<number>(url, this.httpOptions);
   }
+
+  getIdea(ideaId) {
+    const url = this.url + '/' + ideaId;
+    return this.http.get<Idea>(url, this.httpOptions);
+  }
 }
 
 export { Idea };

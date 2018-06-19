@@ -7,7 +7,7 @@
 <div class='overview_list'>
   <mat-nav-list>
     <!-- TODO: zamiana linku w routerLink na ten do konkretnego pomyslu: stawiam na jakis idea/id (do dogadania) zalezne od id konkretnego z ideas-->
-    <mat-list-item *ngFor="let idea of ideas" routerLinkActive="inactive" routerLink="/idea/{{idea.id}}">
+    <mat-list-item *ngFor="let idea of ideas" routerLinkActive="active" routerLink="/idea/{{idea.id}}">
         <h3 class='name' matLine>{{idea.name}}</h3>
         <table class='secondaryInfo'  matLine>
           <tr>

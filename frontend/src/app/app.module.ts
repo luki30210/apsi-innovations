@@ -15,6 +15,7 @@ import { IdeaService } from './_service/idea.service';
 import {PagingService} from './_service/PagingService';
 import {DialogContentComponent, RatingModalComponent} from './rating-modal/rating-modal.component';
 import {MatDialogModule} from '@angular/material';
+import { IdeaDetailsComponent } from './idea-details/idea-details.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {MatDialogModule} from '@angular/material';
     NavbarComponent,
     routeComponents,
     RatingModalComponent,
-    DialogContentComponent
+    DialogContentComponent,
+    IdeaDetailsComponent
   ],
   imports: [
     BrowserAnimationsModule,

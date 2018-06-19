@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 
 import { InnovationsCreationComponent } from './innovations-creation/innovations-creation.component';
 import { InnovationsOverviewComponent } from './innovations-overview/innovations-overview.component';
+import {IdeaDetailsComponent} from './idea-details/idea-details.component';
 
 export const ROUTES: Routes = [
   {
@@ -15,6 +16,11 @@ export const ROUTES: Routes = [
     component: InnovationsOverviewComponent
   },
   {
+    path: 'idea/:id',
+    pathMatch: 'full',
+    component: IdeaDetailsComponent
+  },
+  {
     path: '**',
     redirectTo: '/'
   }
@@ -22,5 +28,6 @@ export const ROUTES: Routes = [
 
 export const routeComponents = [
   InnovationsCreationComponent,
-  InnovationsOverviewComponent
+  InnovationsOverviewComponent,
+  IdeaDetailsComponent
 ];
