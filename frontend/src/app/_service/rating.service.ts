@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { isNull, isUndefined } from 'util';
 
 
 @Injectable({
@@ -13,11 +14,12 @@ export class RatingService {
   private url = './api/idea/1/rating/addRating';
 
   constructor(private http: HttpClient) { }
-
+  opinion;
   rateIdea(rating, text, id) {
     this.url = 'api/idea/' + id + '/rating/addRating';
     console.log(this.url);
-    const formatedData = '{"value":' + rating + ',"ideaId":' + id + ',"opinion":"' + text + '"}';
+    this.opinion = isUndefined(text) ? '' : text;
+    const formatedData = '{"value":' + rating + ',"ideaId":' + id + ',"opinion":"' + this.opinion + '"}';
     console.log(formatedData);
     const data = JSON.parse(formatedData);
     console.log(data);

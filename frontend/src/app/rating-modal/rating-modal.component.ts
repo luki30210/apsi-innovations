@@ -36,8 +36,10 @@ export class RatingModalComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}` + this.idea.id);
+      console.log(`Dialog result: ${result}`);
+      if (result !== undefined) {
       this._ratingService.rateIdea(result[0], result[1], this.idea.id);
+      }
 
     });
   }
@@ -67,8 +69,10 @@ export class DialogContentComponent {
       this.dialogRef.close(this.payload);
     } else {
       console.log('przeslano opinie' + this.rating );
+      this.payload = [this.rating, this.textOpinion];
+
      // this._ratingService.createIdea(this.rating, this.textOpinion, this.id);
-      this.dialogRef.close(this.rating);
+      this.dialogRef.close(this.payload);
 
     }
   }
