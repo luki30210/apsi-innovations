@@ -39,10 +39,10 @@ export class InnovationsOverviewComponent implements OnInit {
   constructor(private _ideaService: IdeaService, private pagingService: PagingService) { }
 
   private getIdeasPage(pageNumber: number, ideasPerPage: number, sortBy: string= '', sortDir: string= '') {
-    this._ideaService.getIdeasWithDetails(pageNumber, ideasPerPage, sortBy, sortDir)
+    this._ideaService.getIdeas(pageNumber, ideasPerPage, sortBy, sortDir)
       .subscribe(ideas => {
         this.ideas = ideas;
-        // this.getMeanRating();
+        this.getMeanRating();
       });
 
     if (this.allIdeas != null ) { this.setPage(pageNumber + 1);}
