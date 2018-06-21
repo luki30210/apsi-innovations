@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { routeComponents, ROUTES } from './app.route';
+import { EventClickStopPropagationDirective } from './_shared/event-click-stop-propagation.directive';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -24,7 +25,8 @@ import { IdeaDetailsComponent } from './idea-details/idea-details.component';
     routeComponents,
     RatingModalComponent,
     DialogContentComponent,
-    IdeaDetailsComponent
+    IdeaDetailsComponent,
+    EventClickStopPropagationDirective
   ],
   imports: [
     BrowserAnimationsModule,

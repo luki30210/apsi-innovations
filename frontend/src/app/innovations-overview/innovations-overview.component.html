@@ -22,7 +22,7 @@
         <div  class='secondaryInfo'>
           {{rate}}{{idea.meanRating == null ? 0 : idea.meanRating}}
         </div>
-        <div>
+        <div appEventClickStopPropagation>
             <app-rating-modal [idea] = "idea"></app-rating-modal>
         </div>
         <mat-divider></mat-divider>
