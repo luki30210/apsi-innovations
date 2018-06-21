@@ -23,7 +23,7 @@
           {{rate}}{{idea.meanRating == null ? 0 : idea.meanRating}}
         </div>
         <div>
-          <app-rating-modal></app-rating-modal>
+            <app-rating-modal [idea] = "idea"></app-rating-modal>
         </div>
         <mat-divider></mat-divider>
     </mat-list-item>
