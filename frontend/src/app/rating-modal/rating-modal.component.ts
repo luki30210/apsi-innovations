@@ -37,7 +37,7 @@ export class RatingModalComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}` + this.idea.id);
-      this._ratingService.createIdea(this.rating, this.textOpinion, this.idea.id);
+      this._ratingService.rateIdea(result[0], result[1], this.idea.id);
 
     });
   }
@@ -68,7 +68,7 @@ export class DialogContentComponent {
     } else {
       console.log('przeslano opinie' + this.rating );
      // this._ratingService.createIdea(this.rating, this.textOpinion, this.id);
-      this.dialogRef.close(this.payload);
+      this.dialogRef.close(this.rating);
 
     }
   }

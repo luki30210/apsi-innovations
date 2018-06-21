@@ -14,11 +14,15 @@ export class RatingService {
 
   constructor(private http: HttpClient) { }
 
-  createIdea(rating, text, id) {
+  rateIdea(rating, text, id) {
+    this.url = 'api/idea/' + id + '/rating/addRating';
+    console.log(this.url);
     const formatedData = '{"value":' + rating + ',"ideaId":' + id + ',"opinion":"' + text + '"}';
+    console.log(formatedData);
     const data = JSON.parse(formatedData);
     console.log(data);
-    return this.http.post(this.url, formatedData, this.httpOptions);
+    this.http.post(this.url, formatedData, this.httpOptions).subscribe(result =>
+    console.log(result));
   }
 
 
