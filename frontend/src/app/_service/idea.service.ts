@@ -23,6 +23,14 @@ export class IdeaService {
     return this.http.get<Idea[]>(url, this.httpOptions);
   }
 
+  getIdeasWithDetails(pageNumber: number, ideasPerPage: number, sortBy: string= '', sortDir: string= ''): Observable<Idea[]> {
+    let url = this.url + '/with-details?page=' + pageNumber + '&size=' + ideasPerPage;
+    if (sortBy !== '') { url += '&sort=' + sortBy + ',' + sortDir;
+    }
+    console.log(url);
+    return this.http.get<Idea[]>(url, this.httpOptions);
+  }
+
   getIdeasCount(): Observable<number> {
     const url = this.url + '/count';
     return this.http.get<number>(url, this.httpOptions);
