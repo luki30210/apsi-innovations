@@ -63,7 +63,7 @@ export class DialogContentComponent {
     if (this.textOpinion !== undefined) {
       console.log('przeslano opinie' + this.rating + this.textOpinion);
      // this._ratingService.createIdea(this.rating, this.textOpinion, this.id);
-      this.payload = [this.rating, this.textOpinion]
+      this.payload = [this.rating, this.textOpinion];
       this.dialogRef.close(this.payload);
     } else {
       console.log('przeslano opinie' + this.rating );
