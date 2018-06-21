@@ -6,7 +6,7 @@ import pl.pw.elka.apsi.innovations.webui.dto.RatingDto;
 
 @Component
 public class RatingAssembler {
-    public static RatingDto assemble(Rating rating){
+    public static RatingDto assemble(Rating rating) {
         if (rating == null) {
             return null;
         }

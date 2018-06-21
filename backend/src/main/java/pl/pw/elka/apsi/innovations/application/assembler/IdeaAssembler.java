@@ -40,7 +40,7 @@ public class IdeaAssembler {
         return ideas.stream().map(IdeaAssembler::assemble).collect(Collectors.toList());
     }
 
-    public static IdeaDetailsDto assembleWithDetails(Idea idea, String ratingMaybe) {
+    public static IdeaDetailsDto assembleWithDetails(Idea idea, Double meanRating) {
         if (idea == null) {
             return null;
         }
@@ -56,8 +56,7 @@ public class IdeaAssembler {
         dto.setCosts(idea.getCosts());
         dto.setStatus(idea.getStatus());
         dto.setAdditionDate(idea.getAdditionDate());
-
-        // TODO: expand method by rating...
+        dto.setMeanRating(meanRating);
 
         return dto;
     }

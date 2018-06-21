@@ -1,6 +1,7 @@
 package pl.pw.elka.apsi.innovations.application;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pl.pw.elka.apsi.innovations.application.assembler.IdeaAssembler;
@@ -19,17 +20,20 @@ import java.util.stream.Collectors;
 
 @Service
 public class IdeaService {
-    private IdeaRepository ideaRepository;
+    private final IdeaRepository ideaRepository;
 
-    private KeywordService keywordService;
+    private final KeywordService keywordService;
 
-    private SubjectService subjectService;
+    private final SubjectService subjectService;
+
+    private final RatingService ratingService;
 
     @Autowired
-    public IdeaService(IdeaRepository ideaRepository, KeywordService keywordService, SubjectService subjectService) {
+    public IdeaService(IdeaRepository ideaRepository, KeywordService keywordService, SubjectService subjectService, @Lazy RatingService ratingService) {
         this.ideaRepository = ideaRepository;
         this.keywordService = keywordService;
         this.subjectService = subjectService;
+        this.ratingService = ratingService;
     }
 
     public IdeaDto addIdea(IdeaDto ideaDto) {
@@ -54,6 +58,14 @@ public class IdeaService {
     public List<IdeaDto> getIdeas(Pageable pageable) {
         final List<Idea> ideas = ideaRepository.findAll(pageable).stream().collect(Collectors.toList());
         return IdeaAssembler.assemble(ideas);
+    }
+
+    public List<IdeaDetailsDto> getIdeasWithDetails(Pageable pageable) {
+        final List<Idea> ideas = ideaRepository.findAll(pageable).stream().collect(Collectors.toList());
+        return ideas.stream().map(idea -> {
+            final Double meanRatingForIdea = ratingService.getMeanRatingForIdea(idea.getId());
+            return IdeaAssembler.assembleWithDetails(idea, meanRatingForIdea);
+        }).collect(Collectors.toList());
     }
 
     public Long getIdeasCount() {

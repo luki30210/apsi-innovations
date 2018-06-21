@@ -31,12 +31,17 @@ public class IdeaController {
         return ResponseEntity.ok(ideaService.getIdeas(pageable));
     }
 
-    @GetMapping("/count")
+    @GetMapping("with-details")
+    public ResponseEntity<List<IdeaDetailsDto>> getIdeasWithDetails(Pageable pageable) {
+        return ResponseEntity.ok(ideaService.getIdeasWithDetails(pageable));
+    }
+
+    @GetMapping("count")
     public ResponseEntity<Long> getAllIdeasCount() {
         return ResponseEntity.ok(ideaService.getIdeasCount());
     }
 
-    @GetMapping("/{ideaId}")
+    @GetMapping("{ideaId}")
     public ResponseEntity<IdeaDetailsDto> getIdea(@PathVariable Long ideaId) {
         return ResponseEntity.ok(ideaService.getIdeaDetailsDto(ideaId));
     }

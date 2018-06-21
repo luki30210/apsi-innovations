@@ -2,7 +2,6 @@ package pl.pw.elka.apsi.innovations.webui.dto;
 
 import lombok.Getter;
 import lombok.Setter;
-import pl.pw.elka.apsi.innovations.domain.idea.Idea;
 
 import javax.validation.constraints.NotNull;
 
